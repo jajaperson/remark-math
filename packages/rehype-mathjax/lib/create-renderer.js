@@ -1,20 +1,20 @@
 /**
  * @import {Element, Text} from 'hast'
- * @import {LiteDocument} from 'mathjax-full/js/adaptors/lite/Document.js'
- * @import {LiteElement} from 'mathjax-full/js/adaptors/lite/Element.js'
- * @import {LiteText} from 'mathjax-full/js/adaptors/lite/Text.js'
- * @import {MathDocument} from 'mathjax-full/js/core/MathDocument.js'
- * @import {OutputJax} from 'mathjax-full/js/core/OutputJax.js'
- * @import {HTMLHandler as HtmlHandler} from 'mathjax-full/js/handlers/html/HTMLHandler.js'
+ * @import {LiteDocument} from '@mathjax/src/js/adaptors/lite/Document.js'
+ * @import {LiteElement} from '@mathjax/src/js/adaptors/lite/Element.js'
+ * @import {LiteText} from '@mathjax/src/js/adaptors/lite/Text.js'
+ * @import {MathDocument} from '@mathjax/src/js/core/MathDocument.js'
+ * @import {OutputJax} from '@mathjax/src/js/core/OutputJax.js'
+ * @import {HTMLHandler as HtmlHandler} from '@mathjax/src/js/handlers/html/HTMLHandler.js'
  * @import {Options, Renderer} from './create-plugin.js'
  */
 
 import {h} from 'hastscript'
-import {liteAdaptor as liteAdapter} from 'mathjax-full/js/adaptors/liteAdaptor.js'
-import {RegisterHTMLHandler as registerHtmlHandler} from 'mathjax-full/js/handlers/html.js'
-import {AllPackages as allPackages} from 'mathjax-full/js/input/tex/AllPackages.js'
-import {TeX as Tex} from 'mathjax-full/js/input/tex.js'
-import {mathjax} from 'mathjax-full/js/mathjax.js'
+import {liteAdaptor as liteAdapter} from '@mathjax/src/js/adaptors/liteAdaptor.js'
+import {RegisterHTMLHandler as registerHtmlHandler} from '@mathjax/src/js/handlers/html.js'
+import {TeX as Tex} from '@mathjax/src/js/input/tex.js'
+import {mathjax} from '@mathjax/src/js/mathjax.js'
+import {packages} from './mathjax-packages.js'
 
 /**
  * Create a renderer.
@@ -27,7 +27,7 @@ import {mathjax} from 'mathjax-full/js/mathjax.js'
  *   Rendeder.
  */
 export function createRenderer(options, output) {
-  const input = new Tex({packages: allPackages, ...options.tex})
+  const input = new Tex({packages, ...options.tex})
   /** @type {MathDocument<LiteElement, LiteText, LiteDocument>} */
   let document
   /** @type {HtmlHandler<LiteElement | LiteText, LiteText, LiteDocument>} */
