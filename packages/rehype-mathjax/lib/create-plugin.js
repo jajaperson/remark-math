@@ -155,7 +155,7 @@
  *   Math value.
  * @param {Readonly<RenderOptions>} options
  *   Configuration.
- * @returns {Array<ElementContent>}
+ * @returns {Promise<Array<ElementContent>>}
  *   Content.
  *
  * @typedef RenderOptions
@@ -213,12 +213,13 @@ export function createPlugin(createRenderer) {
      *   Tree.
      * @param {VFile} file
      *   File.
-     * @returns {undefined}
+     * @returns {Promise<void>}
      *   Nothing.
      */
-    return function (tree, file) {
+    return async function (tree, file) {
       const renderer = createRenderer(options || emptyOptions)
-      let found = false
+      /** @type {Array<{parent: Root | Element, display: boolean, element: Element, parents: Array<Root | Element>, scope: Element}>} */
+      const found = []
       /** @type {Element | Root} */
       let context = tree
 
@@ -264,46 +265,52 @@ export function createPlugin(createRenderer) {
         /* c8 ignore next -- verbose to test. */
         if (!parent) return
 
-        if (!found && renderer.register) renderer.register()
-        found = true
+        if (found.length === 0 && renderer.register) renderer.register()
 
-        const text = toText(scope, {whitespace: 'pre'})
-        /** @type {Array<ElementContent> | undefined} */
-        let result
-
-        try {
-          result = renderer.render(text, {display})
-        } catch (error) {
-          const cause = /** @type {Error} */ (error)
-
-          file.message('Could not render math with mathjax', {
-            ancestors: [...parents, element],
-            cause,
-            place: element.position,
-            ruleId: 'mathjax-error',
-            source: 'rehype-mathjax'
-          })
-
-          result = [
-            {
-              type: 'element',
-              tagName: 'span',
-              properties: {
-                className: ['mathjax-error'],
-                style: 'color:#cc0000',
-                title: String(cause)
-              },
-              children: [{type: 'text', value: text}]
-            }
-          ]
-        }
-
-        const index = parent.children.indexOf(scope)
-        parent.children.splice(index, 1, ...result)
+        found.push({parent, display, element, parents, scope})
         return SKIP
       })
 
-      if (found) {
+      await Promise.all(
+        found.map(async ({parent, display, element, parents, scope}) => {
+          const text = toText(scope, {whitespace: 'pre'})
+
+          /** @type {Array<ElementContent> | undefined} */
+          let result
+
+          try {
+            result = await renderer.render(text, {display})
+          } catch (error) {
+            const cause = /** @type {Error} */ (error)
+
+            file.message('Could not render math with mathjax', {
+              ancestors: [...parents, element],
+              cause,
+              place: element.position,
+              ruleId: 'mathjax-error',
+              source: 'rehype-mathjax'
+            })
+
+            result = [
+              {
+                type: 'element',
+                tagName: 'span',
+                properties: {
+                  className: ['mathjax-error'],
+                  style: 'color:#cc0000',
+                  title: String(cause)
+                },
+                children: [{type: 'text', value: text}]
+              }
+            ]
+          }
+
+          const index = parent.children.indexOf(scope)
+          parent.children.splice(index, 1, ...result)
+        })
+      )
+
+      if (found.length > 0) {
         if (renderer.styleSheet) context.children.push(renderer.styleSheet())
         if (renderer.unregister) renderer.unregister()
       }

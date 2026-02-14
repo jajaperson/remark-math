@@ -14,6 +14,9 @@ import {liteAdaptor as liteAdapter} from '@mathjax/src/js/adaptors/liteAdaptor.j
 import {RegisterHTMLHandler as registerHtmlHandler} from '@mathjax/src/js/handlers/html.js'
 import {TeX as Tex} from '@mathjax/src/js/input/tex.js'
 import {mathjax} from '@mathjax/src/js/mathjax.js'
+/* eslint-disable import/no-unassigned-import */
+import '@mathjax/src/js/util/asyncLoad/esm.js'
+/* eslint-enable import/no-unassigned-import */
 import {packages} from './mathjax-packages.js'
 
 /**
@@ -39,10 +42,10 @@ export function createRenderer(options, output) {
       handler = registerHtmlHandler(adapter)
       document = mathjax.document('', {InputJax: input, OutputJax: output})
     },
-    render(value, options) {
+    async render(value, options) {
       // Cast as this practically results in an element instead of an `MmlNode`.
       const liteElement = /** @type {LiteElement} */ (
-        document.convert(value, options)
+        await document.convertPromise(value, options)
       )
       return [fromLiteElement(liteElement)]
     },

@@ -10,6 +10,8 @@ import rehypeMathJaxSvg from '../svg.js'
 /** @import { VFile } from 'vfile' */
 
 export const base = new URL('fixture/', import.meta.url)
+const fontURL =
+  'https://cdn.jsdelivr.net/npm/@mathjax/mathjax-newcm-font/chtml/woff2'
 
 /**
  * @type {Array<{description: string, input: string, output: string, process: (inp: Buffer) => Promise<VFile>}>}
@@ -34,7 +36,7 @@ export const fixtures = [
     process(html) {
       return unified()
         .use(rehypeParse, {fragment: true})
-        .use(rehypeMathJaxChtml, {chtml: {fontURL: 'place/to/fonts'}})
+        .use(rehypeMathJaxChtml, {chtml: {fontURL}})
         .use(rehypeStringify)
         .process(html)
     }
@@ -182,5 +184,30 @@ export const fixtures = [
         .use(rehypeStringify)
         .process(html)
     }
+  },
+  {
+    description: 'should render CHTML with MathJax plugins',
+    input: 'bussproofs.html',
+    output: 'bussproofs-chtml.html',
+    process(html) {
+      return unified()
+        .use(rehypeParse, {fragment: true})
+        .use(rehypeMathJaxChtml, {chtml: {fontURL}})
+        .use(rehypeStringify)
+        .process(html)
+    }
   }
+  // See mathjax/MathJax#3522
+  // {
+  //   description: 'should render SVG with MathJax plugins',
+  //   input: 'bussproofs.html',
+  //   output: 'bussproofs-svg.html',
+  //   process(html) {
+  //     return unified()
+  //       .use(rehypeParse, {fragment: true})
+  //       .use(rehypeMathJaxChtml, {svg: {fontCache: 'global'}})
+  //       .use(rehypeStringify)
+  //       .process(html)
+  //   }
+  // }
 ]
