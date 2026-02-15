@@ -196,18 +196,17 @@ export const fixtures = [
         .use(rehypeStringify)
         .process(html)
     }
+  },
+  {
+    description: 'should render SVG with MathJax plugins',
+    input: 'bussproofs.html',
+    output: 'bussproofs-svg.html',
+    process(html) {
+      return unified()
+        .use(rehypeParse, {fragment: true})
+        .use(rehypeMathJaxSvg)
+        .use(rehypeStringify)
+        .process(html)
+    }
   }
-  // See mathjax/MathJax#3522
-  // {
-  //   description: 'should render SVG with MathJax plugins',
-  //   input: 'bussproofs.html',
-  //   output: 'bussproofs-svg.html',
-  //   process(html) {
-  //     return unified()
-  //       .use(rehypeParse, {fragment: true})
-  //       .use(rehypeMathJaxChtml, {svg: {fontCache: 'global'}})
-  //       .use(rehypeStringify)
-  //       .process(html)
-  //   }
-  // }
 ]
