@@ -7,6 +7,7 @@
  * @import {OutputJax} from '@mathjax/src/js/core/OutputJax.js'
  * @import {HTMLHandler as HtmlHandler} from '@mathjax/src/js/handlers/html/HTMLHandler.js'
  * @import {Options, Renderer} from './create-plugin.js'
+ * @import MathJaxTexError from '@mathjax/src/js/input/tex/TexError.js'
  */
 
 import {h} from 'hastscript'
@@ -20,6 +21,17 @@ import '@mathjax/src/js/util/asyncLoad/esm.js'
 import {packages} from './mathjax-packages.js'
 
 /**
+ * Wrapper around MathJax's `TexError`
+ */
+export class TexError extends Error {
+  /** @param {MathJaxTexError} error */
+  constructor(error) {
+    super(error.message)
+    this.id = error.id
+  }
+}
+
+/**
  * Create a renderer.
  *
  * @param {Options} options
@@ -30,7 +42,16 @@ import {packages} from './mathjax-packages.js'
  *   Rendeder.
  */
 export function createRenderer(options, output) {
-  const input = new Tex({packages, ...options.tex})
+  const input = new Tex({
+    packages,
+    formatError(
+      /** @type {Tex<any, any, any>} */ jax,
+      /** @type {TexError} */ error
+    ) {
+      throw new TexError(error)
+    },
+    ...options.tex
+  })
   /** @type {MathDocument<LiteElement, LiteText, LiteDocument>} */
   let document
   /** @type {HtmlHandler<LiteElement | LiteText, LiteText, LiteDocument>} */

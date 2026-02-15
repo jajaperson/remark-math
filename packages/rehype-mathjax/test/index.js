@@ -6,6 +6,7 @@ import rehypeMathJaxChtml from 'rehype-mathjax/chtml'
 import rehypeParse from 'rehype-parse'
 import rehypeStringify from 'rehype-stringify'
 import {unified} from 'unified'
+import rehypeMathJaxSvg from '../lib/svg.js'
 import {fixtures, base} from './fixtures.js'
 
 test('rehype-mathjax', async function (t) {
@@ -73,4 +74,18 @@ test('rehype-mathjax', async function (t) {
       assert.equal(actual.trim(), expected.trim())
     })
   }
+
+  await t.test(
+    'should catch MathJax exceptions to file messages',
+    async function () {
+      const file = await unified()
+        .use(rehypeParse, {fragment: true})
+        .use(rehypeMathJaxSvg)
+        .use(rehypeStringify)
+        .process(await fs.readFile(new URL('error.html', base)))
+      assert.deepEqual(file.messages.map(String), [
+        '1:1-1:44: Could not render math with mathjax'
+      ])
+    }
+  )
 })
