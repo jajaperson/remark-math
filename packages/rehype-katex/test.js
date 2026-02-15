@@ -183,6 +183,11 @@ test('rehype-katex', async function (t) {
     assert.deepEqual(
       {...file.messages[0], cause: undefined, ancestors: []},
       {
+        actual: undefined,
+        expected: undefined,
+        url: undefined,
+        file: '',
+        note: undefined,
         ancestors: [],
         cause: undefined,
         column: 1,
