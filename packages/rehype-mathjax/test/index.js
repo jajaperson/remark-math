@@ -2,10 +2,10 @@
 import assert from 'node:assert/strict'
 import fs from 'node:fs/promises'
 import test from 'node:test'
-import rehypeMathJaxChtml from 'rehype-mathjax/chtml'
 import rehypeParse from 'rehype-parse'
 import rehypeStringify from 'rehype-stringify'
 import {unified} from 'unified'
+import rehypeMathJaxChtml from 'rehype-mathjax/chtml'
 import rehypeMathJaxSvg from '../lib/svg.js'
 import {fixtures, base} from './fixtures.js'
 

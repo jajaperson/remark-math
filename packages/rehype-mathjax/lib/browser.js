@@ -18,8 +18,8 @@ const emptyTexOptions = {}
  */
 const rehypeMathJaxBrowser = createPlugin(function (options) {
   const tex = options.tex || emptyTexOptions
-  const display = tex.displayMath || [['\\[', '\\]']]
-  const inline = tex.inlineMath || [['\\(', '\\)']]
+  const display = tex.displayMath || [[String.raw`\[`, String.raw`\]`]]
+  const inline = tex.inlineMath || [[String.raw`\(`, String.raw`\)`]]
 
   return {
     async render(value, options) {

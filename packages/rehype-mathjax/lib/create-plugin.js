@@ -245,7 +245,7 @@ export function createPlugin(createRenderer) {
           return
         }
 
-        let parent = parents[parents.length - 1]
+        let parent = parents.at(-1)
         let scope = element
 
         // If this was generated with ` ```math `, replace the `<pre>` and use
@@ -258,7 +258,7 @@ export function createPlugin(createRenderer) {
           parent.tagName === 'pre'
         ) {
           scope = parent
-          parent = parents[parents.length - 2]
+          parent = parents.at(-2)
           display = true
         }
 
