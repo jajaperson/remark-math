@@ -13,14 +13,7 @@ import {createRenderer} from './create-renderer.js'
  */
 const rehypeMathJaxSvg = createPlugin(function (options) {
   // MathJax types do not allow `null`.
-  return createRenderer(
-    options,
-    new Svg({
-      // See mathjax/MathJax#3522
-      dynamicPrefix: '@mathjax/mathjax-newcm-font/js/svg/dynamic',
-      ...options.svg
-    })
-  )
+  return createRenderer(options, new Svg(options.svg ?? undefined))
 })
 
 export default rehypeMathJaxSvg
