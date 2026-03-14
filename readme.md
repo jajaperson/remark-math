@@ -73,9 +73,9 @@ $$
 …and our module `example.js` contains:
 
 ```js
-import rehypeKatex from 'rehype-katex'
+import rehypeKatex from '@jajaperson/rehype-katex'
 import rehypeStringify from 'rehype-stringify'
-import remarkMath from 'remark-math'
+import remarkMath from '@jajaperson/remark-math'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 import {read} from 'to-vfile'
@@ -116,10 +116,10 @@ Take the above KaTeX example and change:
 
 ```diff
 @@ -1,4 +1,4 @@
--import rehypeKatex from 'rehype-katex'
-+import rehypeMathjax from 'rehype-mathjax'
+-import rehypeKatex from '@jajaperson/rehype-katex'
++import rehypeMathjax from '@jajaperson/rehype-mathjax'
  import rehypeStringify from 'rehype-stringify'
- import remarkMath from 'remark-math'
+ import remarkMath from '@jajaperson/remark-math'
  import remarkParse from 'remark-parse'
 @@ -10,7 +10,7 @@ const file = await unified()
    .use(remarkParse)
@@ -172,9 +172,9 @@ abide by its terms.
 
 [backers-badge]: https://opencollective.com/unified/backers/badge.svg
 
-[build]: https://github.com/remarkjs/remark-math/actions
+[build]: https://github.com/jajaperson/remark-math/actions
 
-[build-badge]: https://github.com/remarkjs/remark-math/workflows/main/badge.svg
+[build-badge]: https://github.com/jajaperson/remark-math/workflows/main/badge.svg
 
 [chat]: https://github.com/remarkjs/remark/discussions
 

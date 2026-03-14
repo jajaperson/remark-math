@@ -5,17 +5,18 @@ import test from 'node:test'
 import rehypeParse from 'rehype-parse'
 import rehypeStringify from 'rehype-stringify'
 import {unified} from 'unified'
-import rehypeMathJaxChtml from 'rehype-mathjax/chtml'
+import rehypeMathJaxChtml from '@jajaperson/rehype-mathjax/chtml'
 import rehypeMathJaxSvg from '../lib/svg.js'
 import {fixtures, base} from './fixtures.js'
 
-test('rehype-mathjax', async function (t) {
+test('@jajaperson/rehype-mathjax', async function (t) {
   await t.test(
     'should expose the public api for `rehype-mathjax`',
     async function () {
-      assert.deepEqual(Object.keys(await import('rehype-mathjax')).sort(), [
-        'default'
-      ])
+      assert.deepEqual(
+        Object.keys(await import('@jajaperson/rehype-mathjax')).sort(),
+        ['default']
+      )
     }
   )
 
@@ -23,7 +24,7 @@ test('rehype-mathjax', async function (t) {
     'should expose the public api for `rehype-mathjax/browser`',
     async function () {
       assert.deepEqual(
-        Object.keys(await import('rehype-mathjax/browser')).sort(),
+        Object.keys(await import('@jajaperson/rehype-mathjax/browser')).sort(),
         ['default']
       )
     }
@@ -33,7 +34,7 @@ test('rehype-mathjax', async function (t) {
     'should expose the public api for `rehype-mathjax/chtml`',
     async function () {
       assert.deepEqual(
-        Object.keys(await import('rehype-mathjax/chtml')).sort(),
+        Object.keys(await import('@jajaperson/rehype-mathjax/chtml')).sort(),
         ['default']
       )
     }
@@ -42,9 +43,10 @@ test('rehype-mathjax', async function (t) {
   await t.test(
     'should expose the public api for `rehype-mathjax/svg`',
     async function () {
-      assert.deepEqual(Object.keys(await import('rehype-mathjax/svg')).sort(), [
-        'default'
-      ])
+      assert.deepEqual(
+        Object.keys(await import('@jajaperson/rehype-mathjax/svg')).sort(),
+        ['default']
+      )
     }
   )
 

@@ -1,6 +1,6 @@
 {
   "author": "Junyoung Choi <fluke8259@gmail.com> (https://rokt33r.github.io)",
-  "bugs": "https://github.com/remarkjs/remark-math/issues",
+  "bugs": "https://github.com/jajaperson/remark-math/issues",
   "contributors": [
     "Daniel Perez Alvarez <unindented@gmail.com>",
     "John Jeng <j3@sagemath.com>",
@@ -29,7 +29,7 @@
     "unist-util-remove-position": "^5.0.0",
     "xo": "^0.60.0"
   },
-  "name": "remark-math",
+  "name": "@jajaperson/remark-math",
   "prettier": {
     "bracketSpacing": false,
     "semi": false,
@@ -44,7 +44,10 @@
       "remark-preset-wooorm"
     ]
   },
-  "repository": "https://github.com/remarkjs/remark-math",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jajaperson/remark-math.git"
+  },
   "scripts": {
     "build": "tsc --build --clean && tsc --build && type-coverage",
     "format": "remark --frail --output --quiet -- . && prettier --log-level warn --write -- . && xo --fix",
@@ -70,5 +73,6 @@
   ],
   "xo": {
     "prettier": true
-  }
+  },
+  "version": ""
 }

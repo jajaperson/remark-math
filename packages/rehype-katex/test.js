@@ -3,17 +3,18 @@ import test from 'node:test'
 import katex from 'katex'
 import rehypeParse from 'rehype-parse'
 import rehypeStringify from 'rehype-stringify'
-import remarkMath from 'remark-math'
+import remarkMath from '@jajaperson/remark-math'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 import {unified} from 'unified'
-import rehypeKatex from 'rehype-katex'
+import rehypeKatex from '@jajaperson/rehype-katex'
 
-test('rehype-katex', async function (t) {
+test('@jajaperson/rehype-katex', async function (t) {
   await t.test('should expose the public api', async function () {
-    assert.deepEqual(Object.keys(await import('rehype-katex')).sort(), [
-      'default'
-    ])
+    assert.deepEqual(
+      Object.keys(await import('@jajaperson/rehype-katex')).sort(),
+      ['default']
+    )
   })
 
   await t.test('should transform math with katex', async function () {
@@ -205,7 +206,7 @@ test('rehype-katex', async function (t) {
         },
         reason: 'Could not render math with KaTeX',
         ruleId: 'parseerror',
-        source: 'rehype-katex'
+        source: '@jajaperson/rehype-katex'
       }
     )
   })

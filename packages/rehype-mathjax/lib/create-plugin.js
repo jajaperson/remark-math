@@ -289,7 +289,7 @@ export function createPlugin(createRenderer) {
               cause,
               place: element.position,
               ruleId: 'mathjax-error',
-              source: 'rehype-mathjax'
+              source: '@jajaperson/rehype-mathjax'
             })
 
             result = [

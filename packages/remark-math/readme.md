@@ -101,9 +101,9 @@ $$
 …and our module `example.js` contains:
 
 ```js
-import rehypeKatex from 'rehype-katex'
+import rehypeKatex from '@jajaperson/rehype-katex'
 import rehypeStringify from 'rehype-stringify'
-import remarkMath from 'remark-math'
+import remarkMath from '@jajaperson/remark-math'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 import {read} from 'to-vfile'
@@ -284,9 +284,9 @@ abide by its terms.
 
 [backers-badge]: https://opencollective.com/unified/backers/badge.svg
 
-[build]: https://github.com/remarkjs/remark-math/actions
+[build]: https://github.com/jajaperson/remark-math/actions
 
-[build-badge]: https://github.com/remarkjs/remark-math/workflows/main/badge.svg
+[build-badge]: https://github.com/jajaperson/remark-math/workflows/main/badge.svg
 
 [chat]: https://github.com/remarkjs/remark/discussions
 
@@ -314,7 +314,7 @@ abide by its terms.
 
 [health]: https://github.com/remarkjs/.github
 
-[license]: https://github.com/remarkjs/remark-math/blob/main/license
+[license]: https://github.com/jajaperson/remark-math/blob/main/license
 
 [mdast-util-from-markdown]: https://github.com/syntax-tree/mdast-util-from-markdown
 

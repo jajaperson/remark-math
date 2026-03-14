@@ -98,7 +98,7 @@ export default function rehypeKatex(options) {
           cause,
           place: element.position,
           ruleId,
-          source: 'rehype-katex'
+          source: '@jajaperson/rehype-katex'
         })
 
         // KaTeX *should* handle `ParseError` itself, but not others.

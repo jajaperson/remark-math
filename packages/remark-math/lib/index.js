@@ -1,6 +1,6 @@
 /**
  * @import {Root} from 'mdast'
- * @import {Options} from 'remark-math'
+ * @import {Options} from '@jajaperson/remark-math'
  * @import {} from 'remark-parse'
  * @import {} from 'remark-stringify'
  * @import {Processor} from 'unified'

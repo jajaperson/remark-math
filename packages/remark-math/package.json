@@ -1,6 +1,6 @@
 {
   "author": "Junyoung Choi <fluke8259@gmail.com> (https://rokt33r.github.io)",
-  "bugs": "https://github.com/remarkjs/remark-math/issues",
+  "bugs": "https://github.com/jajaperson/remark-math/issues",
   "contributors": [
     "Junyoung Choi <fluke8259@gmail.com> (https://rokt33r.github.io)",
     "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)"
@@ -36,8 +36,11 @@
     "unified"
   ],
   "license": "MIT",
-  "name": "remark-math",
-  "repository": "https://github.com/remarkjs/remark-math/tree/main/packages/remark-math",
+  "name": "@jajaperson/remark-math",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jajaperson/remark-math.git#main"
+  },
   "scripts": {
     "test-api": "node --conditions development test.js",
     "test": "npm run build && npm run test-api"

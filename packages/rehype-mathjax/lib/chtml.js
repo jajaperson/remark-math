@@ -14,7 +14,7 @@ import {createRenderer} from './create-renderer.js'
 const rehypeMathJaxChtml = createPlugin(function (options) {
   if (!options.chtml || !options.chtml.fontURL) {
     throw new Error(
-      'rehype-mathjax: missing `fontURL` in options, which must be set to a URL to reach MathJaX fonts'
+      '@jajaperson/rehype-mathjax: missing `fontURL` in options, which must be set to a URL to reach MathJaX fonts'
     )
   }
 

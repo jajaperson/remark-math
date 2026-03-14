@@ -16,9 +16,10 @@ test('remarkMath', async function (t) {
     .use(rehypeStringify)
 
   await t.test('should expose the public api', async function () {
-    assert.deepEqual(Object.keys(await import('remark-math')).sort(), [
-      'default'
-    ])
+    assert.deepEqual(
+      Object.keys(await import('@jajaperson/remark-math')).sort(),
+      ['default']
+    )
   })
 
   await t.test('should parse inline and block math', async function () {

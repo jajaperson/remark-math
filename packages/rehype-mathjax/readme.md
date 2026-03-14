@@ -84,7 +84,7 @@ Say our document `input.html` contains:
 …and our module `example.js` contains:
 
 ```js
-import rehypeMathjax from 'rehype-mathjax'
+import rehypeMathjax from '@jajaperson/rehype-mathjax'
 import rehypeParse from 'rehype-parse'
 import rehypeStringify from 'rehype-stringify'
 import {read, write} from 'to-vfile'
@@ -239,10 +239,10 @@ When you don’t trust user content but do trust MathJax, run `rehype-mathjax`
 *after* `rehype-sanitize`:
 
 ```js
-import rehypeMathjax from 'rehype-mathjax'
+import rehypeMathjax from '@jajaperson/rehype-mathjax'
 import rehypeSanitize, {defaultSchema} from 'rehype-sanitize'
 import rehypeStringify from 'rehype-stringify'
-import remarkMath from 'remark-math'
+import remarkMath from '@jajaperson/remark-math'
 import remarkParse from 'remark-parse'
 import remarkRehype from 'remark-rehype'
 import {unified} from 'unified'
@@ -303,9 +303,9 @@ abide by its terms.
 
 [backers-badge]: https://opencollective.com/unified/backers/badge.svg
 
-[build]: https://github.com/remarkjs/remark-math/actions
+[build]: https://github.com/jajaperson/remark-math/actions
 
-[build-badge]: https://github.com/remarkjs/remark-math/workflows/main/badge.svg
+[build-badge]: https://github.com/jajaperson/remark-math/workflows/main/badge.svg
 
 [chat]: https://github.com/remarkjs/remark/discussions
 
@@ -333,7 +333,7 @@ abide by its terms.
 
 [katex]: https://github.com/Khan/KaTeX
 
-[license]: https://github.com/remarkjs/remark-math/blob/main/license
+[license]: https://github.com/jajaperson/remark-math/blob/main/license
 
 [mathjax]: https://mathjax.org/
 

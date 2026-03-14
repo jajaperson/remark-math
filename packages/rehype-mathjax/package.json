@@ -1,6 +1,6 @@
 {
   "author": "Taniguchi Masaya <mew@cat.ovh> (https://tani.cc)",
-  "bugs": "https://github.com/remarkjs/remark-math/issues",
+  "bugs": "https://github.com/jajaperson/remark-math/issues",
   "contributors": [
     "Taniguchi Masaya <mew@cat.ovh> (https://tani.cc)",
     "Titus Wormer <tituswormer@gmail.com> (https://wooorm.com)"
@@ -53,8 +53,11 @@
     "unified"
   ],
   "license": "MIT",
-  "name": "rehype-mathjax",
-  "repository": "https://github.com/remarkjs/remark-math/tree/main/packages/rehype-mathjax",
+  "name": "@jajaperson/rehype-mathjax",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jajaperson/remark-math.git#main"
+  },
   "scripts": {
     "test-api": "node --conditions development test/index.js",
     "test": "npm run build && npm run test-api",
