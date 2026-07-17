@@ -206,6 +206,8 @@ export function createPlugin(createRenderer) {
    *   Transform.
    */
   return function (options) {
+    const renderer = createRenderer(options || emptyOptions)
+
     /**
      * Transform.
      *
@@ -217,7 +219,6 @@ export function createPlugin(createRenderer) {
      *   Nothing.
      */
     return async function (tree, file) {
-      const renderer = createRenderer(options || emptyOptions)
       /** @type {Array<{parent: Root | Element, display: boolean, element: Element, parents: Array<Root | Element>, scope: Element}>} */
       const found = []
       /** @type {Element | Root} */

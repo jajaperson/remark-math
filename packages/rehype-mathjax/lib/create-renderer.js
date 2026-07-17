@@ -54,13 +54,11 @@ export function createRenderer(options, output) {
   })
   /** @type {MathDocument<LiteElement, LiteText, LiteDocument>} */
   let document
-  /** @type {HtmlHandler<LiteElement | LiteText, LiteText, LiteDocument>} */
-  let handler
+  const adapter = liteAdapter()
+  registerHtmlHandler(adapter);
 
   return {
     register() {
-      const adapter = liteAdapter()
-      handler = registerHtmlHandler(adapter)
       document = mathjax.document('', {InputJax: input, OutputJax: output})
     },
     async render(value, options) {
@@ -77,7 +75,12 @@ export function createRenderer(options, output) {
       return node
     },
     unregister() {
-      mathjax.handlers.unregister(handler)
+      const jax = document.outputJax;
+      jax.reset();
+      /// @ts-ignore
+      if (jax.chtmlStyles) jax.chtmlStyles = null;
+      /// @ts-ignore
+      if (jax.svgStyles) jax.svgStyles = null;
     }
   }
 }
